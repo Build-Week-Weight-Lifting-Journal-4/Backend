@@ -11,6 +11,11 @@ const server = express();
 
 server.use(helmet());
 server.use(express.json());
+
+server.get("/", (req, res) => {
+    res.send({ api: "api is running..."})
+})
+
 server.use('/api/users', WorkoutRouter);
 server.use('/api/users', UserRouter);
 server.use('/api/users', ExerciseRouter);
