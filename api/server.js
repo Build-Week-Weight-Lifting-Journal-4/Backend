@@ -4,7 +4,7 @@ const db = require('../data/db-config.js')
 require('dotenv').config()
 
 const UserRouter = require('../weightlift/user-router.js');
-const WorkoutRouter = require('../weightlift/workout-router.js');
+// const WorkoutRouter = require('../weightlift/workout-router.js');
 const ExerciseRouter = require('../weightlift/exercise-router.js');
 
 const server = express();
@@ -16,7 +16,7 @@ server.get("/", (req, res) => {
     res.send({ api: "api is running..."})
 })
 
-server.use('/workout', WorkoutRouter);
+// server.use('/workout', WorkoutRouter);
 server.use('/users', UserRouter);
 server.use('/exercise', ExerciseRouter);
 

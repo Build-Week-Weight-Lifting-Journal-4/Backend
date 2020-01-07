@@ -1,10 +1,9 @@
 const express = require('express');
-
 const Exercise = require('./exercise-model.js');
-
 const router = express.Router();
+const restricted = require("../restricted-middleware.js");
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     Exercise.findExercise()
   .then(Exercise => {
       const mExercise= Exercise.map((exer)=>exer.completed===0?{...exer,completed:false}:{...exer,completed:true})
@@ -15,7 +14,7 @@ router.get('/', (req, res) => {
   });
 }); 
 
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
 
     const id = req.params.id;
 
@@ -28,7 +27,7 @@ router.get('/:id', (req, res) => {
   });
 }); 
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
   const eData = req.body;
 
   Exercise.addExercise(eData)
@@ -40,7 +39,7 @@ router.post('/', (req, res) => {
   });
 });  
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
     const { id } = req.params;
     const changes = req.body;
   
@@ -60,7 +59,7 @@ router.put('/:id', (req, res) => {
     });
   });
   
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
     const { id } = req.params;
 
     Exercise.removeExercise(id)

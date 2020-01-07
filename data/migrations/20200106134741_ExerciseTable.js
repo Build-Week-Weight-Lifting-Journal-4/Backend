@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.string("name", 128)
              .notNullable()   
 
-        table.string("amount", 128);
+        table.string("sets", 128);
 
         table.string("time", 128);
 
@@ -13,6 +13,15 @@ exports.up = function(knex) {
 
         table.boolean("completed")
              .defaultTo(false);
+
+        // 🔑 Foreign Key 🔑
+        table.integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete("RESTRICT");      
 
         table.timestamps(true, true);
     });

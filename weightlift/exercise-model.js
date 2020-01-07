@@ -11,6 +11,8 @@ module.exports = {
 
 function findById(id) {
     return db("exercise")
+    // .select("e.name", "e.sets","e.region","e.completed","e.time","e.user_id")
+    // .join("users as u", "u.id", "e.user_id")
         .where({ id })
         .first();
 }
@@ -20,7 +22,13 @@ function findExercise() {
 }
 
 function addExercise(exercise) {
+    console.log(exercise);
+    db("exercise")
+    .insert(exercise)
+    .then(console.log)
     return db("exercise")
+    //     .select("e.name", "e.sets","e.region","e.completed","e.time","e.user_id")
+    //     .join("users as u", "u.id", "e.user_id")
         .insert(exercise, "id")
         .then(ids => {
             const [id] = ids;

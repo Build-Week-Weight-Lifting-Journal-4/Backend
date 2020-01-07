@@ -1,32 +1,32 @@
-const express = require('express');
+// const express = require('express');
 
-const Workout = require('./workout-model.js');
+// const Workout = require('./workout-model.js');
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get('/', (req, res) => {
-    Workout.findWorkout()
-  .then(Workout => {
-      const mWorkout= Workout.map((exer)=>exer.completed===0?{...exer,completed:false}:{...exer,completed:true})
-    res.json(mWorkout);
-  })
-  .catch(err => {
-    res.status(500).json({ message: 'Failed to get the workouts' });
-  });
-}); 
+// router.get('/', (req, res) => {
+//     Workout.findWorkout()
+//   .then(Workout => {
+//       const mWorkout= Workout.map((exer)=>exer.completed===0?{...exer,completed:false}:{...exer,completed:true})
+//     res.json(mWorkout);
+//   })
+//   .catch(err => {
+//     res.status(500).json({ message: 'Failed to get the workouts' });
+//   });
+// }); 
 
-router.get('/:id', (req, res) => {
+// router.get('/:id', (req, res) => {
 
-    const id = req.params.id;
+//     const id = req.params.id;
 
-    Workout.findById(id)
-  .then(Workout => {
-    res.json(Workout);
-  })
-  .catch(err => {
-    res.status(500).json({ message: 'Failed to get the workout' });
-  });
-}); 
+//     Workout.findById(id)
+//   .then(Workout => {
+//     res.json(Workout);
+//   })
+//   .catch(err => {
+//     res.status(500).json({ message: 'Failed to get the workout' });
+//   });
+// }); 
 
 //NOT SURE IF NEEDED//
 
@@ -65,20 +65,20 @@ router.get('/:id', (req, res) => {
 //     });
 //   });
   
-router.delete('/:id', (req, res) => {
-    const { id } = req.params;
+// router.delete('/:id', (req, res) => {
+//     const { id } = req.params;
 
-    Workout.removeWorkout(id)
-    .then(deleted => {
-        if (deleted) {
-        res.json({ removed: deleted });
-        } else {
-        res.status(404).json({ message: 'Could not find workout with given id' });
-        }
-    })
-    .catch(err => {
-        res.status(500).json({ message: 'Failed to delete workout' });
-    });
-});
+//     Workout.removeWorkout(id)
+//     .then(deleted => {
+//         if (deleted) {
+//         res.json({ removed: deleted });
+//         } else {
+//         res.status(404).json({ message: 'Could not find workout with given id' });
+//         }
+//     })
+//     .catch(err => {
+//         res.status(500).json({ message: 'Failed to delete workout' });
+//     });
+// });
 
-module.exports = router;
+// module.exports = router;
