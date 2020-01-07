@@ -28,37 +28,42 @@ router.get('/:id', (req, res) => {
   });
 }); 
 
-router.post('/', (req, res) => {
-  const wData = req.body;
+//NOT SURE IF NEEDED//
 
-  Workout.addWorkout(wData)
-  .then(added => {
-    res.status(201).json(added);
-  })
-  .catch (err => {
-    res.status(500).json({ message: 'Failed to create new workout' });
-  });
-});  
+// router.post('/', (req, res) => {
+//   const wData = req.body;
 
-router.put('/:id', (req, res) => {
-    const { id } = req.params;
-    const changes = req.body;
+//   Workout.addWorkout(wData)
+//   .then(added => {
+//     res.status(201).json(added);
+//   })
+//   .catch (err => {
+//     res.status(500).json({ message: 'Failed to create new workout' });
+//   });
+// });  
+
+
+//NOT SURE IF NEEDED//
+
+// router.put('/:id', (req, res) => {
+//     const { id } = req.params;
+//     const changes = req.body;
   
-    Workout.findById(id)
-    .then(workout => {
-      if (workout) {
-        Workout.updateWorkout(changes, id)
-        .then(updatedWorkout => {
-          res.json(updatedWorkout);
-        });
-      } else {
-        res.status(404).json({ message: 'Could not find the workout with given id' });
-      }
-    })
-    .catch (err => {
-      res.status(500).json({ message: 'Failed to update the workout' });
-    });
-  });
+//     Workout.findById(id)
+//     .then(workout => {
+//       if (workout) {
+//         Workout.updateWorkout(changes, id)
+//         .then(updatedWorkout => {
+//           res.json(updatedWorkout);
+//         });
+//       } else {
+//         res.status(404).json({ message: 'Could not find the workout with given id' });
+//       }
+//     })
+//     .catch (err => {
+//       res.status(500).json({ message: 'Failed to update the workout' });
+//     });
+//   });
   
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
