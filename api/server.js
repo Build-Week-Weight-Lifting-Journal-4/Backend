@@ -16,8 +16,8 @@ server.get("/", (req, res) => {
     res.send({ api: "api is running..."})
 })
 
-server.use('/api/users', WorkoutRouter);
-server.use('/api/users', UserRouter);
-server.use('/api/users', ExerciseRouter);
+server.use('/workout', WorkoutRouter);
+server.use('/users', UserRouter);
+server.use('/exercise', ExerciseRouter);
 
 module.exports = server;

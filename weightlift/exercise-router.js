@@ -4,7 +4,7 @@ const Exercise = require('./exercise-model.js');
 
 const router = express.Router();
 
-router.get('/exercise', (req, res) => {
+router.get('/', (req, res) => {
     Exercise.findExercise()
   .then(Exercise => {
       const mExercise= Exercise.map((exer)=>exer.completed===0?{...exer,completed:false}:{...exer,completed:true})
@@ -15,7 +15,7 @@ router.get('/exercise', (req, res) => {
   });
 }); 
 
-router.get('/exercise/:id', (req, res) => {
+router.get('/:id', (req, res) => {
 
     const id = req.params.id;
 
@@ -28,7 +28,7 @@ router.get('/exercise/:id', (req, res) => {
   });
 }); 
 
-router.post('/exercise', (req, res) => {
+router.post('/', (req, res) => {
   const eData = req.body;
 
   Exercise.addExercise(eData)
@@ -40,7 +40,7 @@ router.post('/exercise', (req, res) => {
   });
 });  
 
-router.put('/exercise/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const { id } = req.params;
     const changes = req.body;
   
@@ -60,7 +60,7 @@ router.put('/exercise/:id', (req, res) => {
     });
   });
   
-router.delete('/exercise/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
     Exercise.removeExercise(id)

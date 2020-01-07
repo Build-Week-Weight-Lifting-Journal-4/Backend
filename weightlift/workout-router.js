@@ -4,7 +4,7 @@ const Workout = require('./workout-model.js');
 
 const router = express.Router();
 
-router.get('/workout', (req, res) => {
+router.get('/', (req, res) => {
     Workout.findWorkout()
   .then(Workout => {
       const mWorkout= Workout.map((exer)=>exer.completed===0?{...exer,completed:false}:{...exer,completed:true})
@@ -15,7 +15,7 @@ router.get('/workout', (req, res) => {
   });
 }); 
 
-router.get('/workout/:id', (req, res) => {
+router.get('/:id', (req, res) => {
 
     const id = req.params.id;
 
@@ -28,7 +28,7 @@ router.get('/workout/:id', (req, res) => {
   });
 }); 
 
-router.post('/workout', (req, res) => {
+router.post('/', (req, res) => {
   const wData = req.body;
 
   Workout.addWorkout(wData)
@@ -40,7 +40,7 @@ router.post('/workout', (req, res) => {
   });
 });  
 
-router.put('/workout/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const { id } = req.params;
     const changes = req.body;
   
@@ -60,7 +60,7 @@ router.put('/workout/:id', (req, res) => {
     });
   });
   
-router.delete('/workout/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
     Workout.removeWorkout(id)
