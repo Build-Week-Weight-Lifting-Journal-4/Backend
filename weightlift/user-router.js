@@ -74,6 +74,20 @@ router.get("/",restricted, (req, res) => {
   });
 });
 
+// GET Users by ID
+router.get('/:id', restricted, (req, res) => {
+
+  const { id } = req.params;
+
+  Users.findById(id)
+  .then(user => {        
+    res.status(200).json(user);        
+  })
+  .catch(error => {
+    res.status(500).json({ error: 'There was an error retrieving the user from the database.'});
+  })
+})
+
 //TOKEN GET USERS//
 
 //ADMIN CHECK//
