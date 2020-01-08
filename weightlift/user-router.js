@@ -24,7 +24,7 @@ router.post("/register", (req, res) => {
 
 //TOKEN LOGIN//
 router.post("/login", (req, res) => {
-  let { id, username, password } = req.body;
+  let { username, password } = req.body;
 
   Users.findBy({ username })
     .first()
@@ -35,7 +35,7 @@ router.post("/login", (req, res) => {
 
         // send the token
         res.status(200).json({
-          id,
+          id:user.id,
           token, // added token as part of the response sent
           message: `Welcome ${user.username}!`,
         });
