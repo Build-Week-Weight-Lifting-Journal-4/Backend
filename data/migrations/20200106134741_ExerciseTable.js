@@ -8,6 +8,8 @@ exports.up = function(knex) {
         table.string("sets", 128);
 
         table.string("time", 128);
+        
+        table.string("reps", 128);
 
         table.string("region", 128);
 
@@ -21,7 +23,7 @@ exports.up = function(knex) {
         .references('id')
         .inTable('users')
         .onUpdate('CASCADE')
-        .onDelete("RESTRICT");      
+        .onDelete('CASCADE');      
 
         table.timestamps(true, true);
     });
