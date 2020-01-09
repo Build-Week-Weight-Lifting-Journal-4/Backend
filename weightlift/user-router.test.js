@@ -4,12 +4,11 @@ const db = require('../data/db-config.js');
 
 describe('user-router.js', () => {
 
-    beforeEach(async () => {
-        await db('exercise').truncate();
-        await db('users').truncate();
-    });
-    
     describe('POST /users/register', () => {
+
+      beforeEach(async () => {
+        await db('users').truncate();
+      });
 
       it('Should register a new user', () => {
         return request(server)
@@ -45,7 +44,7 @@ describe('user-router.js', () => {
         return request(server)
         .post('/users/login')
         .send({
-            username: "fj2020",
+            username: "jj2020",
             password: "test"
         })
         .then(res => {
@@ -57,13 +56,13 @@ describe('user-router.js', () => {
         return request(server)
         .post('/users/login')
         .send({
-            username: "fj2020",
+            username: "jj2020",
             password: "test"
         })
         .then(res => {            
           expect(res.type).toMatch(/json/i);
         });
       });
-    });
-
+    });  
 });  
+
